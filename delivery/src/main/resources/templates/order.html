@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Создание нового заказа</title>
+</head>
+<body>
+<h1>Создание нового заказа</h1>
+<form th:action="@{/api/v1/order/save}" method="post">
+    <div>
+        <label>ФИО отправителя:</label>
+        <input type="text" name="nameOfTheSender" required>
+    </div>
+    <div>
+        <label>Город отправителя:</label>
+        <select name="senderCity" required>
+            <option value="CITY1">Бишкек</option>
+            <option value="CITY2">Каракол</option>
+            <option value="CITY2">Балыкчы</option>
+            <!-- Добавьте остальные варианты городов -->
+        </select>
+    </div>
+    <div>
+        <label>Адрес отправителя:</label>
+        <input type="text" name="senderAddress" required>
+    </div>
+    <div>
+        <label>ФИО получателя:</label>
+        <input type="text" name="nameOfTheRecipient" required>
+    </div>
+    <div>
+        <label>Город получателя:</label>
+        <select name="recipientCity" required>
+            <option value="CITY1">Бишкек</option>
+            <option value="CITY2">Каракол</option>
+            <option value="CITY2">Балыкчы</option>
+            <!-- Добавьте остальные варианты городов -->
+        </select>
+    </div>
+    <div>
+        <label>Адрес получателя:</label>
+        <input type="text" name="recipientAddress" required>
+    </div>
+    <div>
+        <label>Вес посылки:</label>
+        <input type="number" name="packageWeight" step="0.01" required>
+    </div>
+    <div>
+        <label>Дата отправки:</label>
+        <input type="date" name="sendingDate" required>
+    </div>
+    <div>
+        <button type="submit">Создать заказ</button>
+    </div>
+</form>
+</body>
+</html>
