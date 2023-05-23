@@ -20,7 +20,7 @@ public class OrderController {
 
     private final OrderService service;
 
-    @GetMapping("/orders/new")
+    @GetMapping("/orders-new")
     public String getNewOrderPage(Model model) {
         model.addAttribute("order", new Order());
         return "new-order";
