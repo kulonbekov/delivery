@@ -1,15 +1,12 @@
 package com.company.delivery.controller;
 
 import com.company.delivery.models.entities.Order;
-
 import com.company.delivery.services.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,12 +39,11 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/find/all")
+    @RequestMapping(value="/find/all", method=RequestMethod.GET)
     @ApiOperation("Вывод всех заказов")
-    String findAll(Model model) {
-        List<Order> orders = service.findAll();
-        model.addAttribute("orders",orders);
-        return "orders-list.html"; // Имя представления (шаблона) Thymeleaf
+    ResponseEntity<List<Order>> findAll() {
+        return ResponseEntity.ok(service.findAll());
+
     }
 
     @PutMapping("/update")
