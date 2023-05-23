@@ -5,31 +5,36 @@ import com.company.delivery.services.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Api(tags = "1. Заказы")
-@RestController
-@RequestMapping(value = "/api/v1/order")
+@Controller
 @RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService service;
 
-    @PostMapping("/save")
-    @ApiOperation("Сохранение")
-    ResponseEntity<?> save(@RequestBody Order order) {
-        try {
-            return new ResponseEntity<>(service.save(order), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-        }
+    @GetMapping("/orders/new")
+    public String getNewOrderPage(Model model) {
+        model.addAttribute("order", new Order());
+        return "new-order";
     }
 
-    @GetMapping("/find/by/id")
+    @PostMapping("/orders")
+    @ApiOperation("Сохранение")
+    String save(@ModelAttribute("order") Order order) {
+
+            service.save(order);
+            return  "redirect:/orders";
+
+
+    }
+
+    /*@GetMapping("/orders/find/by/id")
     @ApiOperation("Поиск заказа по id")
     ResponseEntity<?> findByName(@RequestParam Long id) {
         try {
@@ -37,16 +42,18 @@ public class OrderController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
-    }
+    }*/
 
-    @RequestMapping(value="/find/all", method=RequestMethod.GET)
+    @GetMapping("/orders")
     @ApiOperation("Вывод всех заказов")
-    ResponseEntity<List<Order>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    String findAll(Model model) {
+        List<Order> orders = service.findAll();
+        model.addAttribute("orders", orders);
+        return "orders"; // Это будет отображать шаблон orders.html
 
     }
 
-    @PutMapping("/update")
+    /*@PutMapping("/update")
     @ApiOperation("Обновить заказ")
     ResponseEntity<?> update(@RequestBody Order order){
         try {
@@ -66,5 +73,5 @@ public class OrderController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
-
+*/
 }

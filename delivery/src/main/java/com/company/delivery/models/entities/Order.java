@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,8 +28,8 @@ public class Order {
     @Column(name = "status")
     Status status;
     @NotNull
-    @Column(name = "name_of_the_sender")
-    String nameOfTheSender;
+    @Column(name = "sender_name")
+    String senderName;
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "sender_city")
@@ -37,8 +38,8 @@ public class Order {
     @Column(name = "sender_address")
     String senderAddress;
     @NotNull
-    @Column(name = "name_of_the_recipient")
-    String nameOfTheRecipient;
+    @Column(name = "recipient_name")
+    String recipientName;
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "recipient_city")
@@ -51,7 +52,7 @@ public class Order {
     double packageWeight;
     @NotNull
     @Column(name = "sending_date")
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date sendingDate;
 
     @PrePersist
