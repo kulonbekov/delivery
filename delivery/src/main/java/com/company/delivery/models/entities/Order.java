@@ -2,7 +2,6 @@ package com.company.delivery.models.entities;
 
 import com.company.delivery.models.enums.City;
 import com.company.delivery.models.enums.Status;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

@@ -22,7 +22,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findById(Long id) {
-        return rep.findById(id).orElseThrow(()->new RuntimeException("Order is not found"));
+        return rep.findById(id).orElseThrow(() -> new RuntimeException("Order is not found"));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order delete(Long id) {
-        Order order = rep.findById(id).orElseThrow(()->new RuntimeException("Order is not found"));
+        Order order = rep.findById(id).orElseThrow(() -> new RuntimeException("Order is not found"));
         order.setStatus(Status.DELETED);
         return save(order);
     }

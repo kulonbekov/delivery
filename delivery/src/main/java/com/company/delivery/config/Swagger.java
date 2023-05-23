@@ -23,6 +23,7 @@ public class Swagger {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("My Custom API Documentation")
