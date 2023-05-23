@@ -37,28 +37,18 @@ spring.datasource.password=postgres
 ```
 3. В директории проекта, запустите PowerShell, введите команду 
 ```bash
-mvn clean package
+./mvnw spring-boot:run
 ```
-4. Убедитесь, что проект успешно собран и создан WAR-файл в папке
+4. Если приложение успешно запущено, вы должны увидеть страница со списком принятых заказов.
 ```bash
-..\delivery\delivery\target
+http://localhost:8060/orders
 ```
-5. Установите Apache Tomcat 9.0 на сервер или компьютер, где планируется развернуть приложение
-6. Скопируйте WAR-файл, полученный на предыдущем шаге, в директорию webapps внутри каталога установки Tomcat. Пример пути:
-```bash
-<путь к установке Tomcat>/webapps
-```
-7. Запустите сервер Apache Tomcat.
-8. Перейдите в каталог bin внутри каталога установки Tomcat.
-9. Запустите скрипт startup.bat (для Windows) или startup.sh (для Linux/Unix) для запуска сервера Tomcat.
-```bash
-http://localhost:8080/delivery/orders
-```
-11. Если приложение успешно развернуто, вы должны увидеть страница со списком принятых заказов.
 
 Обзор проекта
 ================================
 
-1. http://localhost:8080/delivery/orders  - страница со списком принятых заказов
-2. http://localhost:8080/delivery/orders/new - cтраница с формой создания нового заказа
-3. server.port=8060
+`http://localhost:8060/orders` - страница со списком принятых заказов
+
+`http://localhost:8060/orders-new` - cтраница с формой создания нового заказа
+
+`server.port=8060`
